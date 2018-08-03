@@ -112,7 +112,7 @@ public class BoardDAO {
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_LIST);
-			stmt.executeUpdate();
+			rs = stmt.executeQuery();
 			
 			while(rs.next()){
 				BoardVO board = new BoardVO();
