@@ -16,6 +16,28 @@
 	<!-- AOP 어노테이션 인식 -->
 	<aop:aspectj-autoproxy/>
 	
+	<!-- DataSource 설정 (직접 설정)
+	<bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource"
+				destroy-method="close">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:tcp://localhost/~/test" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+	 -->
+	
+	<!-- DataSource 설정 (프로퍼티 파일 사용)-->
+	<context:property-placeholder location="classpath:config/database.properties" />
+	<bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource"
+				destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	
+	
 	<!-- AOP Bean 주석 처리 (어노테이션 기반으로 할 경우)
 	<bean id="before" class="com.springbook.biz.common.BeforeAdvice"/>
 	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"/>
