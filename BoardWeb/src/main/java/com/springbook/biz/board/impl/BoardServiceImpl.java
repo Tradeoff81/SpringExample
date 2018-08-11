@@ -16,6 +16,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void insertBoard(BoardVO vo) {
 		// TODO Auto-generated method stub
+		
+		//예외 발생용 코드(AOP AfterThrowingAdvice를 테스트 할 때 주석 해제)
+		//if(vo.getSeq()==0) {
+		//	throw new IllegalArgumentException("0번 글은 등록할 수 없습니다.");
+		//}
 		boardDAO.insertBoard(vo);
 	}
 
