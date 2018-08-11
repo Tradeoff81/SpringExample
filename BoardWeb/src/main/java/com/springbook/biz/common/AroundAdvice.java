@@ -11,12 +11,9 @@ import org.springframework.util.StopWatch;
 @Aspect
 public class AroundAdvice {
 	
-	@Pointcut("execution(* com.springbook.biz..*Impl.*(..))")	//포인트컷 선언
-	public void allPointcut(){}
-	
 	//설정된 메소드에 하나의 어드바이스로 실행 전/후 처리에 대한 동작을 하는 메소드
 	//ProceedingJoinPoint: JoinPoint를 상속한 클래스. proceed()를 사용하기 위해 선언.
-	@Around("allPointcut()")		//어드바이스 선언
+	@Around("PointcutCommon.allPointcut()")		//어드바이스 선언
 	public Object aroundLog(ProceedingJoinPoint pjp) throws Throwable {
 		System.out.println("[Before]: 비즈니스 메소드 수행 전에 처리할 내용...");
 		

@@ -10,12 +10,9 @@ import org.springframework.stereotype.Service;
 @Aspect
 public class BeforeAdvice {
 	
-	@Pointcut("execution(* com.springbook.biz..*Impl.*(..))")	//포인트컷 선언
-	public void allPointcut(){}
-	
 	//설정된 메소드가 실행 전에 동작하는 메소드
 	//JoinPoint; 클라이언트가 호출한 비지니스 메소드의 정보가 들어있는 클래스
-	@Before("allPointcut()")		//어드바이스 선언
+	@Before("PointcutCommon.allPointcut()")		//어드바이스 선언
 	public void beforeLog(JoinPoint jp) {
 		String method = jp.getSignature().getName();
 		//클라이언트가 호출한 메소드의  시그니처 정보에서 메소드 이름 반환
